@@ -1,0 +1,14 @@
+{
+    "name": "solid/bundle_version",
+    "description": "Ready to use AppStore and Google Play package version resolver tools",
+    "type": "library, appstore, googleplay, version, bundle version",
+    "license": "LGPL",
+    "authors": [
+        {
+            "name": "Ruslan Gataullin",
+            "email": "ruslan@solid.studio"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
