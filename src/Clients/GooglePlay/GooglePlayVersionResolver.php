@@ -8,11 +8,11 @@ use Exception;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
-use Solid\VersionChecker\Clients\BundleResolverInterface;
+use Solid\VersionChecker\Clients\BundleVersionResolverInterface;
 use Solid\VersionChecker\Clients\GooglePlay\Exceptions\FailedToResolveGooglePlayVersionException;
 use Solid\VersionChecker\DTOs\VersionQueryResultDTO;
 
-class GooglePlayVersionResolver implements BundleResolverInterface
+class GooglePlayVersionResolver implements BundleVersionResolverInterface
 {
     /** @var \GuzzleHttp\ClientInterface */
     protected $client;
