@@ -10,7 +10,7 @@ php:
 branches:
   only:
     - master
-    - dev
+    - develop
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
