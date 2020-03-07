@@ -4,7 +4,6 @@ use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Solid\VersionChecker\Clients\AppStore\AppStoreVersionResolver;
 use Solid\VersionChecker\Clients\AppStore\Exceptions\FailedToResolveAppStoreVersionException;
-use Solid\VersionChecker\DTOs\VersionQueryResultDTO;
 
 class AppStoreVersionResolverTest extends TestCase
 {
