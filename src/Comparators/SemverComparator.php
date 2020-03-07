@@ -8,17 +8,23 @@ class SemverComparator implements ComparatorInterface
 {
     protected function hydrateVersionVector(string $version)
     {
-        list($major, $minor, $patch) = explode('.', $version);
+        $parts = explode('.', $version);
 
-        if ($major === null) {
+        if (array_key_exists(0, $parts)) {
+            $major = $parts[0];
+        } else {
             $major = 0;
         }
 
-        if ($minor === null) {
+        if (array_key_exists(1, $parts)) {
+            $minor = $parts[1];
+        } else {
             $minor = 0;
         }
 
-        if ($patch === null) {
+        if (array_key_exists(2, $parts)) {
+            $patch = $parts[2];
+        } else {
             $patch = 0;
         }
 
