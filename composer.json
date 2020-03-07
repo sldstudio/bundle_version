@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Ready to use AppStore and Google Play package version resolver tools",
     "type": "library",
-    "license": "LGPL",
+    "license": "LGPL-2.1-or-later",
     "authors": [
         {
             "name": "Ruslan Gataullin",
