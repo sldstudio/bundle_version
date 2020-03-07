@@ -8,7 +8,6 @@ use Exception;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
-use Solid\VersionChecker\Clients\AppStore\Exceptions\FailedToResolveAppStoreVersionException;
 use Solid\VersionChecker\Clients\BundleResolverInterface;
 use Solid\VersionChecker\Clients\GooglePlay\Exceptions\FailedToResolveGooglePlayVersionException;
 use Solid\VersionChecker\DTOs\VersionQueryResultDTO;
