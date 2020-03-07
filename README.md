@@ -5,6 +5,10 @@
 
 Small tool set which enables you to check currently deployed GooglePlay and AppStore application revision
 
+## Installation
+
+`composer require solid/bundle_version`
+
 ## Usage
 
 Each store has separate `BundleVersionResolverInterface` concrete
