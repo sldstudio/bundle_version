@@ -1,4 +1,13 @@
-<phpunit>
+<phpunit
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        bootstrap="vendor/autoload.php"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        processIsolation="false"
+        stopOnFailure="false">
 
     <testsuites>
         <testsuite name="Library tests">
@@ -8,7 +17,8 @@
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">/src</directory>
+            <directory suffix=".php">./src</directory>
+            <directory suffix=".php">./test</directory>
         </whitelist>
     </filter>
 
