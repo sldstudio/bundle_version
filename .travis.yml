@@ -1,0 +1,27 @@
+language: php
+
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
+  - hhvm
+
+branches:
+  only:
+    - master
+    - dev
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+install:
+  - travis_retry composer install --no-interaction --no-suggest
+
+script:
+  - composer test -- --coverage-clover=coverage.xml
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
