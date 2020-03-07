@@ -46,8 +46,8 @@ class GooglePlayVersionResolver implements BundleVersionResolverInterface
             $xpath = new DOMXPath($dom);
             $tags = $xpath->query(".//c-wiz//*[contains(@class, 'htlgb')]");
 
-            if($tags->count() > 0) {
-                for($i = 0; $i < $tags->count(); $i++) {
+            if($tags->length > 0) {
+                for($i = 0; $i < $tags->length; $i++) {
                     /** @var \DOMElement $tag */
                     $tag = $tags->item($i);
 
