@@ -1,9 +1,14 @@
 # Application bundle version checker tools
 
 [![Build Status](https://travis-ci.com/ica4c/bundle_version.svg?branch=master)](https://travis-ci.org/ica4c/bundle_version)
-[![codecov](https://codecov.io/gh/ica4c/bundle_version/branch/master/graph/badge.svg)](https://codecov.io/gh/ica4c/bundle_version)
+![PHP Version](https://img.shields.io/travis/php-v/ica4c/bundle_version)
+[![Composer Version](https://img.shields.io/packagist/v/solid/bundle_version)](https://packagist.org/packages/solid/bundle_version)
 
 Small tool set which enables you to check currently deployed GooglePlay and AppStore application revision
+
+## Installation
+
+`composer require solid/bundle_version`
 
 ## Usage
 
