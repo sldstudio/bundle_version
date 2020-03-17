@@ -51,7 +51,7 @@ class GooglePlayVersionResolver implements BundleVersionResolverInterface
                     /** @var \DOMElement $tag */
                     $tag = $tags->item($i);
 
-                    if(preg_match("/(\d+\.?){2,3}/", $tag->textContent)) {
+                    if(preg_match("/^(\d+\.?){2,3}$/", $tag->textContent)) {
                         return new VersionQueryResultDTO($bundleId, $tag->textContent);
                     }
                 }
