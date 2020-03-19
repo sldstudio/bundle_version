@@ -20,18 +20,20 @@ class GooglePlayVersionResolverTest extends TestCase
     }
 
     /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Solid\VersionChecker\Clients\GooglePlay\Exceptions\FailedToResolveGooglePlayVersionException
      */
     public function testResponse()
     {
-        $bundle = 'org.pixelrush.moneyiq';
+        $bundle = 'com.valvesoftware.android.steam.community';
         $version = $this->resolver->resolve($bundle);
 
         $this->assertSame($bundle, $version->getBundleId());
-        $this->assertIsString($version->getCurrentRevision());
+        $this->assertIsString($version->getCurrentRevision()->toString());
     }
 
     /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Solid\VersionChecker\Clients\GooglePlay\Exceptions\FailedToResolveGooglePlayVersionException
      */
     public function testFails()

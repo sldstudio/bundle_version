@@ -6,11 +6,11 @@ use DOMDocument;
 use DOMXPath;
 use Exception;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use Solid\VersionChecker\Clients\BundleVersionResolverInterface;
 use Solid\VersionChecker\Clients\GooglePlay\Exceptions\FailedToResolveGooglePlayVersionException;
 use Solid\VersionChecker\DTOs\VersionQueryResultDTO;
+use Solid\VersionChecker\Models\Semver\SemanticVersionFactory;
 
 class GooglePlayVersionResolver implements BundleVersionResolverInterface
 {
@@ -30,6 +30,7 @@ class GooglePlayVersionResolver implements BundleVersionResolverInterface
     /**
      * @param string $bundleId
      * @return \Solid\VersionChecker\DTOs\VersionQueryResultDTO
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Solid\VersionChecker\Clients\GooglePlay\Exceptions\FailedToResolveGooglePlayVersionException
      */
     public function resolve(string $bundleId): VersionQueryResultDTO
@@ -51,16 +52,17 @@ class GooglePlayVersionResolver implements BundleVersionResolverInterface
                     /** @var \DOMElement $tag */
                     $tag = $tags->item($i);
 
-                    if(preg_match("/^(\d+\.?){2,3}$/", $tag->textContent)) {
-                        return new VersionQueryResultDTO($bundleId, $tag->textContent);
+                    if(preg_match(SemanticVersionFactory::PATTERN, $tag->textContent)) {
+                        $factory = new SemanticVersionFactory();
+
+                        return new VersionQueryResultDTO(
+                            $bundleId, $factory->fromString($tag->textContent)
+                        );
                     }
                 }
             }
 
             throw new FailedToResolveGooglePlayVersionException($bundleId, new Exception('Failed to resolve version', 400));
-        } catch (GuzzleException $httpException) {
-            // TODO: implement more concrete exceptions
-            throw new FailedToResolveGooglePlayVersionException($bundleId, $httpException);
         } catch (Exception $exception) {
             // TODO: implement more concrete exceptions
             throw new FailedToResolveGooglePlayVersionException($bundleId, $exception);
