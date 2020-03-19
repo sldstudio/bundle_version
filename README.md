@@ -79,9 +79,9 @@ try {
     $comparator = new SemverComparator();
     $versionCompareResult = $comparator->compare($appStoreVersion->getCurrentRevision(), $googlePlayVersion->getCurrentRevision())
 
-    if($versionCompareResult->is(VersionCompareResultEnum::MAJOR_CHANGE)) {
+    if($versionCompareResult->is(VersionCompareResultEnum::MAJOR)) {
        echo 'App store has newer major release than play store';
-    } else if($versionCompareResult->is(VersionCompareResultEnum::MINOR_CHANGE)) {
+    } else if($versionCompareResult->is(VersionCompareResultEnum::MINOR)) {
        echo 'App store has newer minor release than play store';
     } else if($versionCompareResult->is(VersionCompareResultEnum::PATCH)) {
        echo 'App store has newer patch release than play store';
