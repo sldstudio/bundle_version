@@ -4,11 +4,11 @@ namespace Solid\VersionChecker\Clients\AppStore;
 
 use Exception;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use Solid\VersionChecker\Clients\AppStore\Exceptions\FailedToResolveAppStoreVersionException;
 use Solid\VersionChecker\Clients\BundleVersionResolverInterface;
 use Solid\VersionChecker\DTOs\VersionQueryResultDTO;
+use Solid\VersionChecker\Models\Semver\SemanticVersionFactory;
 
 class AppStoreVersionResolver implements BundleVersionResolverInterface
 {
@@ -28,6 +28,7 @@ class AppStoreVersionResolver implements BundleVersionResolverInterface
     /**
      * @param string $bundleId
      * @return \Solid\VersionChecker\DTOs\VersionQueryResultDTO
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Solid\VersionChecker\Clients\AppStore\Exceptions\FailedToResolveAppStoreVersionException
      */
     public function resolve(string $bundleId): VersionQueryResultDTO
@@ -43,14 +44,15 @@ class AppStoreVersionResolver implements BundleVersionResolverInterface
                 $result = $body['results'][0];
 
                 if (array_key_exists('version', $result)) {
-                    return new VersionQueryResultDTO($bundleId, $result['version']);
+                    $factory = new SemanticVersionFactory();
+
+                    return new VersionQueryResultDTO(
+                        $bundleId, $factory->fromString($result['version'])
+                    );
                 }
             }
 
             throw new FailedToResolveAppStoreVersionException($bundleId, new Exception('Empty payload', 400));
-        } catch (GuzzleException $httpException) {
-            // TODO: implement more concrete exceptions
-            throw new FailedToResolveAppStoreVersionException($bundleId, $httpException);
         } catch (Exception $exception) {
             // TODO: implement more concrete exceptions
             throw new FailedToResolveAppStoreVersionException($bundleId, $exception);

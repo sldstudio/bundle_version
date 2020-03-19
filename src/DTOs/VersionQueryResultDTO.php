@@ -2,20 +2,22 @@
 
 namespace Solid\VersionChecker\DTOs;
 
+use Solid\VersionChecker\Models\VersionInterface;
+
 class VersionQueryResultDTO
 {
     /** @var string */
     protected $bundleId;
-    /** @var string */
+    /** @var \Solid\VersionChecker\Models\VersionInterface */
     protected $currentRevision;
 
     /**
      * VersionQueryResultDTO constructor.
      *
      * @param string $bundleId
-     * @param string $currentRevision
+     * @param VersionInterface $currentRevision
      */
-    public function __construct(string $bundleId, string $currentRevision)
+    public function __construct(string $bundleId, VersionInterface $currentRevision)
     {
         $this->bundleId = $bundleId;
         $this->currentRevision = $currentRevision;
@@ -30,9 +32,9 @@ class VersionQueryResultDTO
     }
 
     /**
-     * @return string
+     * @return VersionInterface
      */
-    public function getCurrentRevision(): string
+    public function getCurrentRevision(): VersionInterface
     {
         return $this->currentRevision;
     }

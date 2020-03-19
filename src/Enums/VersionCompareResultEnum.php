@@ -6,8 +6,8 @@ use InvalidArgumentException;
 
 class VersionCompareResultEnum
 {
-    const MAJOR_CHANGE = 'major';
-    const MINOR_CHANGE = 'minor';
+    const BREAKING = 'major';
+    const MINOR = 'minor';
     const PATCH = 'patch';
     const SAME = 'same';
 
@@ -22,8 +22,8 @@ class VersionCompareResultEnum
     public function __construct(string $type)
     {
         switch ($type) {
-            case static::MAJOR_CHANGE:
-            case static::MINOR_CHANGE:
+            case static::BREAKING:
+            case static::MINOR:
             case static::PATCH:
             case static::SAME:
                 $this->value = $type;

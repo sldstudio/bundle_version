@@ -20,18 +20,20 @@ class AppStoreVersionResolverTest extends TestCase
     }
 
     /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Solid\VersionChecker\Clients\AppStore\Exceptions\FailedToResolveAppStoreVersionException
      */
     public function testAppStoreLookup()
     {
-        $bundle = 'pro.goldprice.live';
+        $bundle = 'com.apple.stocks';
         $version = $this->resolver->resolve($bundle);
 
         $this->assertSame($bundle, $version->getBundleId());
-        $this->assertIsString($version->getCurrentRevision());
+        $this->assertIsString($version->getCurrentRevision()->toString());
     }
 
     /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Solid\VersionChecker\Clients\AppStore\Exceptions\FailedToResolveAppStoreVersionException
      */
     public function testFailedAppStoreLookup()
