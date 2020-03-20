@@ -56,7 +56,7 @@ class SemanticVersionFactory
             (int) $major,
             (int) $minor,
             (int) $patch,
-            $matches['build'] ? (int) $matches['build'] : null,
+            array_key_exists('build', $matches) ? (int) $matches['build'] : null,
             $matches['note'] ?? null
         );
     }
